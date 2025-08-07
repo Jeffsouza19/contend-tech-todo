@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class TaskService
@@ -13,11 +14,11 @@ class TaskService
     /**
      * Get all tasks for a specific user.
      */
-    public function getAllForUser(User $user, int $perPage = 10): LengthAwarePaginator
+    public function getAllForUser(User $user, int $perPage = 10): Paginator
     {
         return Task::query()->where('user_id', $user->id)
             ->latest()
-            ->paginate($perPage);
+            ->simplePaginate($perPage);
     }
 
     /**

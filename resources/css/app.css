@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+th, td {
+    font-size: 14px !important;
+}
+
+.icon-table {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+}

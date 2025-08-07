@@ -10,8 +10,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-medium">{{ __('Suas Tarefas') }}</h3>
-                        <a href="{{ route('tasks.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                        <h3 class="text-xl font-medium">{{ __('Suas Tarefas') }}</h3>
+                        <a href="{{ route('tasks.create') }}" class=" px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                             {{ __('Nova Tarefa') }}
                         </a>
                     </div>
@@ -44,7 +44,7 @@
                                 <tbody>
                                     @foreach ($tasks as $task)
                                         <tr>
-                                            <td class="py-2 px-4 border-b border-gray-200">
+                                            <td class="py-2 px-4 border-b border-gray-200 w-full max-w-[90%]">
                                                 {{ $task->title }}
                                             </td>
                                             <td class="py-2 px-4 border-b border-gray-200">
@@ -53,21 +53,23 @@
                                                 </span>
                                             </td>
                                             <td class="py-2 px-4 border-b border-gray-200">
-                                                {{ $task->created_at->format('d/m/Y H:i') }}
+                                                {{ $task->created_at->format('d/m/Y') }}
                                             </td>
-                                            <td class="py-2 px-4 border-b border-gray-200">
+                                            <td class="py-2 px-4 border-b border-gray-200 text-right">
                                                 <div class="flex space-x-2">
-                                                    <a href="{{ route('tasks.show', $task) }}" class="text-blue-600 hover:text-blue-900">
-                                                        {{ __('View') }}
+                                                    <a href="{{ route('tasks.show', $task) }}" class="text-green-600 hover:text-green-900">
+                                                        <x-heroicon-o-check-circle class="icon-table" alt="Marcar como concluida"/>
                                                     </a>
-                                                    <a href="{{ route('tasks.edit', $task) }}" class="text-indigo-600 hover:text-indigo-900">
-                                                        {{ __('Edit') }}
+                                                    <a href="{{ route('tasks.show', $task) }}" class="text-gray-600 hover:text-gray-900">
+                                                        <x-heroicon-o-eye class="icon-table"/>
                                                     </a>
-                                                    <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="inline">
+                                                    <a href="{{ route('tasks.edit', $task) }}" class="text-gray-600 hover:text-gray-900">
+                                                        <x-heroicon-o-pencil-square class="icon-table"/>                                                    </a>
+                                                    <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="w-8 h-8">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure you want to delete this task?')">
-                                                            {{ __('Delete') }}
+                                                            <x-heroicon-o-trash class="icon-table"/>
                                                         </button>
                                                     </form>
                                                 </div>
