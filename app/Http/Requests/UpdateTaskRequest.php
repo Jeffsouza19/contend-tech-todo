@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Http\Requests;
 
+use App\Services\TaskService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateTaskRequest extends FormRequest
@@ -13,7 +14,10 @@ class UpdateTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        $task        = $this->route('task');
+        $taskService = app(TaskService::class);
+
+        return $taskService->belongsToUser($task, $this->user());
     }
 
     /**
@@ -24,7 +28,9 @@ class UpdateTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'       => 'required|string|max:255',
+            'description' => 'required|string',
+            'status'      => 'required|in:pendente,concluída',
         ];
     }
 }

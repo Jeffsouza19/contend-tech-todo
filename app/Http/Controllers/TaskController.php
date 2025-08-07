@@ -7,62 +7,64 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use App\Services\TaskService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): void
-    {
-        //
+    public function __construct(
+        /**
+         * The task service instance.
+         */
+        protected TaskService $taskService
+    ) {
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): void
+    public function index(Request $request): View
     {
-        //
+        $tasks = $this->taskService->getAllForUser($request->user());
+
+        return view('tasks.index', ['tasks' => $tasks]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreTaskRequest $request): void
+    public function create(): View
     {
-        //
+        return view('tasks.create');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task): void
+    public function store(StoreTaskRequest $request): RedirectResponse
     {
-        //
+        $this->taskService->create($request->validated(), $request->user());
+
+        return redirect()->route('tasks.index')
+            ->with('success', 'Task created successfully.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task): void
+    public function show(Task $task): View
     {
-        //
+        return view('tasks.show', ['task' => $task]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateTaskRequest $request, Task $task): void
+    public function edit(Task $task): View
     {
-        //
+        return view('tasks.edit', ['task' => $task]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Task $task): void
+    public function update(UpdateTaskRequest $request, Task $task): RedirectResponse
     {
-        //
+        $this->taskService->update($task, $request->validated());
+
+        return redirect()->route('tasks.show', $task)
+            ->with('success', 'Task updated successfully.');
+    }
+
+    public function destroy(Task $task): RedirectResponse
+    {
+        $this->taskService->delete($task);
+
+        return redirect()->route('tasks.index')
+            ->with('success', 'Task deleted successfully.');
     }
 }
