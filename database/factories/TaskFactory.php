@@ -18,8 +18,13 @@ class TaskFactory extends Factory
      */
     public function definition(): array
     {
+        $user = \App\Models\User::query()->inRandomOrder()->first();
+
         return [
-            //
+            'title'       => fake()->sentence(),
+            'description' => fake()->paragraph(),
+            'status'      => fake()->randomElement(['pendente', 'concluída']),
+            'user_id'     => $user->getAuthIdentifier(),
         ];
     }
 }
