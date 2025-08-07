@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function configUrls(): void
     {
-        URL::forceHttps();
+        //        URL::forceHttps();
     }
 
     private function configDate(): void
