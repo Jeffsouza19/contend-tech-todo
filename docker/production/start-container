@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+mkdir -p /app/storage/logs
+mkdir -p /app/storage/framework/cache
+mkdir -p /app/storage/framework/sessions
+mkdir -p /app/storage/framework/views
+
+touch /app/storage/logs/laravel.log
+
+chmod -R 777 /app/storage
+chown -R application:application /app/storage
+chmod 666 /app/storage/logs/laravel.log
+
+php artisan key:generate --force
+
+php artisan migrate --force
+php artisan optimize:clear
+
+/opt/docker/bin/entrypoint.sh supervisord
