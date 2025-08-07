@@ -7,27 +7,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Docker Setup
-
-This project includes Docker configuration for easy development and deployment. You can use Docker Compose to run the application with MySQL database.
-
-### Prerequisites
-
-- Docker and Docker Compose installed on your system
-- Copy `.env.example` to `.env` and configure your environment variables
-
-### Running with Docker Compose
-
-```bash
-# Start the application with Docker Compose
-docker-compose up -d
-
-# To stop the application
-docker-compose down
-```
-
-The application will be available at http://localhost (or the port specified in APP_PORT environment variable).
-
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
