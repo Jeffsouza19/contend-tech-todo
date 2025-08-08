@@ -93,6 +93,17 @@ Siga os passos abaixo para configurar o ambiente de desenvolvimento localmente.
     ```bash
     php artisan migrate
     ```
+    Para iniciar a tabela com dados ficticios para teste execute o comando:
+    ```bash
+    php artisan migrate --seed
+    ```
+    Caso já tenha rodado as migrates e queira apenas popular o banco de dados com dados fictícios, execute:
+    ```bash
+    php artisan db:seed
+    ```
+    O usuário padrão criado pelo seeder é:
+    - **Email:** `teste@teste.com`
+    - **Senha:** `password`
 
 ## ▶️ Executando a Aplicação
 
