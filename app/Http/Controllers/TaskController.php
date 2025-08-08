@@ -76,6 +76,6 @@ class TaskController extends Controller
         $this->taskService->delete($task);
 
         return redirect()->route('tasks.index')
-            ->with('success', 'Task deleted successfully.');
+            ->with('success', 'Tarefa deletada com sucesso.');
     }
 }

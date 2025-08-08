@@ -46,9 +46,13 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Task $task): TaskResource
+    public function show(Task $task): TaskResource | JsonResponse
     {
-        return new TaskResource($task);
+        if ($this->taskService->belongsToUser($task, request()->user())) {
+            return new TaskResource($task);
+        }
+
+        return response()->json(['message' => 'Tarefa Indisponivel'], Response::HTTP_FORBIDDEN);
     }
 
     /**
@@ -64,20 +68,28 @@ class TaskController extends Controller
     /**
      * Toggle the status of the specified resource.
      */
-    public function toggleStatus(Request $request, Task $task): TaskResource
+    public function toggleStatus(Request $request, Task $task): TaskResource | JsonResponse
     {
-        $updatedTask = $this->taskService->toggleStatus($task);
+        if ($this->taskService->belongsToUser($task, request()->user())) {
+            $updatedTask = $this->taskService->toggleStatus($task);
 
-        return new TaskResource($updatedTask);
+            return new TaskResource($updatedTask);
+        }
+
+        return response()->json(['message' => 'Tarefa Indisponivel'], Response::HTTP_FORBIDDEN);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task): Response
+    public function destroy(Task $task): Response | JsonResponse
     {
-        $this->taskService->delete($task);
+        if ($this->taskService->belongsToUser($task, request()->user())) {
+            $this->taskService->delete($task);
 
-        return response()->noContent();
+            return response()->noContent();
+        }
+
+        return response()->json(['message' => 'Tarefa Indisponivel'], Response::HTTP_FORBIDDEN);
     }
 }

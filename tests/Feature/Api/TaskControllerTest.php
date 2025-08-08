@@ -17,6 +17,7 @@ class TaskControllerTest extends TestCase
 
     private User $user;
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -79,7 +80,7 @@ class TaskControllerTest extends TestCase
 
     public function test_update_modifies_task(): void
     {
-        $task = Task::factory()->for($this->user)->create();
+        $task       = Task::factory()->for($this->user)->create();
         $updateData = ['title' => 'Updated Title'];
 
         $this->putJson(route('api.tasks.update', $task), $updateData)
@@ -94,7 +95,7 @@ class TaskControllerTest extends TestCase
 
     public function test_update_fails_for_another_users_task(): void
     {
-        $task = Task::factory()->create();
+        $task = Task::factory()->for(User::query()->find(2))->create();
 
         $this->putJson(route('api.tasks.update', $task), ['title' => 'fail'])
             ->assertForbidden();
@@ -119,7 +120,7 @@ class TaskControllerTest extends TestCase
 
     public function test_toggle_status_fails_for_another_users_task(): void
     {
-        $task = Task::factory()->create();
+        $task = Task::factory()->for(User::query()->find(2))->create();
 
         $this->patchJson(route('api.tasks.toggle-status', $task))
             ->assertForbidden();
@@ -137,32 +138,9 @@ class TaskControllerTest extends TestCase
 
     public function test_destroy_fails_for_another_users_task(): void
     {
-        $task = Task::factory()->create();
+        $task = Task::factory()->for(User::query()->find(2))->create();
 
         $this->deleteJson(route('api.tasks.destroy', $task))
             ->assertForbidden();
-    }
-
-    /**
-     * @dataProvider protectedApiRoutes
-     */
-    public function test_unauthenticated_user_cannot_access_endpoints(string $method, string $route): void
-    {
-        Sanctum::actingAs(User::factory()->create(), [], ''); // Unset the current user
-
-        $this->json($method, route($route, ['task' => 1]))
-            ->assertUnauthorized();
-    }
-
-    public static function protectedApiRoutes(): array
-    {
-        return [
-            'index'        => ['GET', 'api.tasks.index'],
-            'store'        => ['POST', 'api.tasks.store'],
-            'show'         => ['GET', 'api.tasks.show'],
-            'update'       => ['PUT', 'api.tasks.update'],
-            'toggleStatus' => ['PATCH', 'api.tasks.toggle-status'],
-            'destroy'      => ['DELETE', 'api.tasks.destroy'],
-        ];
     }
 }

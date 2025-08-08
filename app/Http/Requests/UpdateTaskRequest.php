@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace App\Http\Requests;
 
+use App\Models\Task;
 use App\Services\TaskService;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateTaskRequest extends FormRequest
@@ -14,8 +16,12 @@ class UpdateTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        $task        = $this->route('task');
+        $task        = Task::query()->first($this->route('task'));
         $taskService = app(TaskService::class);
+
+        if (! $task) {
+            return false;
+        }
 
         return $taskService->belongsToUser($task, $this->user());
     }
@@ -23,14 +29,14 @@ class UpdateTaskRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
             'title'       => 'required|string|max:255',
-            'description' => 'required|string',
-            'status'      => 'required|in:pendente,concluída',
+            'description' => 'required|string|sometimes',
+            'status'      => 'required|in:pendente,concluída|sometimes',
         ];
     }
 }
