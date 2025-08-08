@@ -58,7 +58,7 @@
                                             </td>
                                             <td class="py-2 px-4 border-b border-gray-200 text-right">
                                                 <div class="flex space-x-2">
-                                                    <form action="{{ route('tasks.confirm', $task) }}" method="POST">
+                                                    <form action="{{ route('tasks.toggle-status', $task) }}" method="POST">
                                                         @csrf
                                                         @method('PATCH')
                                                         <button type="submit" class="text-green-600 hover:text-green-900"

@@ -53,15 +53,13 @@ class TaskService
     /**
      * Toggles the status of a task between 'pendente' and 'concluída'.
      */
-    public function toggleStatus(Task $task): string
+    public function toggleStatus(Task $task): Task
     {
         $newStatus = $task->status === 'concluída' ? 'pendente' : 'concluída';
 
         $this->update($task, ['status' => $newStatus]);
 
-        return $task->status === 'concluída'
-            ? "A tarefa '{$task->title}' foi marcada como concluída."
-            : "A tarefa '{$task->title}' foi marcada como pendente.";
+        return $task->refresh();
     }
 
     /**

@@ -60,11 +60,15 @@ class TaskController extends Controller
             ->with('success', 'Task updated successfully.');
     }
 
-    public function confirm(Task $task): RedirectResponse
+    public function toggleStatus(Task $task): RedirectResponse
     {
-        $result = $this->taskService->toggleStatus($task);
+        $this->taskService->toggleStatus($task);
 
-        return redirect()->route('tasks.index')->with('success', $result);
+        $message = $task->status === 'concluída'
+            ? "A tarefa '{$task->title}' foi marcada como concluída."
+            : "A tarefa '{$task->title}' foi marcada como pendente.";
+
+        return redirect()->route('tasks.index')->with('success', $message);
     }
 
     public function destroy(Task $task): RedirectResponse

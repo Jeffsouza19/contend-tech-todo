@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use OwenIt\Auditing\Contracts\Auditable;
 
 class User extends Authenticatable implements Auditable, MustVerifyEmail
@@ -18,6 +19,7 @@ class User extends Authenticatable implements Auditable, MustVerifyEmail
     use HasFactory;
     use Notifiable;
     use \OwenIt\Auditing\Auditable;
+    use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
