@@ -7,11 +7,13 @@ namespace App\Models;
 use Database\Factories\TaskFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends BaseModel
 {
     /** @use HasFactory<TaskFactory> */
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'title',

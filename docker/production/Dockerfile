@@ -2,7 +2,7 @@ FROM webdevops/php-nginx:8.4-alpine
 
 ENV WEB_DOCUMENT_ROOT=/app/public
 
-ENV PHP_DISMOD=bz2,calendar,exiif,ffi,intl,gettext,ldap,mysqli,imap,soap,sockets,sysvshm,sysvsm,sysvmsg,shmop,xsl,zip,gd,apcu,vips,yaml,imagick,amqp
+ENV PHP_DISMOD=bz2,calendar,exiif,ffi,intl,gettext,ldap,mysqli,imap,soap,sockets,sysvshm,sysvsm,sysvmsg,shmop,xsl,zip,gd,apcu,vips,yaml,imagick,amqp,sqlite
 
 WORKDIR /app
 

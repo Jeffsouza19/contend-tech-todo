@@ -20,6 +20,7 @@ return new class () extends Migration
             $table->enum('status', ['pendente', 'concluída'])->default('pendente');
             $table->foreignIdFor(App\Models\User::class)->constrained();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
