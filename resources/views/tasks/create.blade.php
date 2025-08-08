@@ -39,11 +39,11 @@
                             @enderror
                         </div>
 
-                        <div class="flex items-center justify-end mt-4">
-                            <a href="{{ route('tasks.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-300 border border-transparent rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-400 active:bg-gray-500 focus:outline-none focus:border-gray-500 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 mr-2">
+                        <div class="flex items-center justify-end mt-6">
+                            <a href="{{ route('tasks.index') }}" class="text-gray-600 hover:text-gray-900 mr-4">
                                 {{ __('Cancelar') }}
                             </a>
-                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
+                            <button type="submit" class="text-sm px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                                 {{ __('Adicionar') }}
                             </button>
                         </div>

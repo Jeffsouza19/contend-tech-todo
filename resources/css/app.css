@@ -6,6 +6,15 @@ th, td {
     font-size: 14px !important;
 }
 
+button, a {
+    font-size: 0.875rem !important;
+}
+
+[role="navigation"] > span {
+    background-color: #273446;
+    color: #949ca8;
+}
+
 .icon-table {
     width: 32px;
     height: 32px;

@@ -7,7 +7,6 @@ namespace App\Services;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class TaskService
 {
@@ -49,6 +48,20 @@ class TaskService
         $task->update($data);
 
         return $task;
+    }
+
+    /**
+     * Toggles the status of a task between 'pendente' and 'concluída'.
+     */
+    public function toggleStatus(Task $task): string
+    {
+        $newStatus = $task->status === 'concluída' ? 'pendente' : 'concluída';
+
+        $this->update($task, ['status' => $newStatus]);
+
+        return $task->status === 'concluída'
+            ? "A tarefa '{$task->title}' foi marcada como concluída."
+            : "A tarefa '{$task->title}' foi marcada como pendente.";
     }
 
     /**

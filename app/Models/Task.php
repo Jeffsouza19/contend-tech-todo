@@ -12,6 +12,7 @@ class Task extends BaseModel
 {
     /** @use HasFactory<TaskFactory> */
     use HasFactory;
+
     protected $fillable = [
         'title',
         'description',

@@ -17,6 +17,7 @@ Route::middleware('auth')->group(function (): void {
 
     // Task routes
     Route::resource('tasks', TaskController::class);
+    Route::patch('tasks/{task}', [TaskController::class, 'confirm'])->name('tasks.confirm');
 });
 
 require __DIR__ . '/auth.php';

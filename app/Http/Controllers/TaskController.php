@@ -60,6 +60,13 @@ class TaskController extends Controller
             ->with('success', 'Task updated successfully.');
     }
 
+    public function confirm(Task $task): RedirectResponse
+    {
+        $result = $this->taskService->toggleStatus($task);
+
+        return redirect()->route('tasks.index')->with('success', $result);
+    }
+
     public function destroy(Task $task): RedirectResponse
     {
         $this->taskService->delete($task);
