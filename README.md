@@ -1,66 +1,144 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Contend Tech - TODO List
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Uma aplicação de lista de tarefas (To-Do List) robusta e moderna, construída com o framework Laravel. O projeto segue as melhores práticas de desenvolvimento, focando em código limpo, testável e de fácil manutenção.
 
-## About Laravel
+## ✨ Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Autenticação de Usuário:** Sistema completo de registro, login e logout com **Laravel Breeze**.
+- **Gerenciamento de Tarefas:** Funcionalidade CRUD (Criar, Ler, Atualizar, Deletar) completa para tarefas.
+- **Status de Tarefas:** Alterne facilmente o status de uma tarefa entre "Pendente" e "Concluída".
+- **Interface Responsiva:** UI limpa e amigável construída com **Tailwind CSS** e componentes **Blade**.
+- **Exclusão Segura:** Utiliza **Soft Deletes** para que as tarefas possam ser recuperadas se necessário.
+- **Pronto para API:** Autenticação via token com **Laravel Sanctum** já configurada.
+- **Auditoria:** Rastreamento de alterações nos modelos com o pacote `owen-it/laravel-auditing`.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Tecnologias e Serviços
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Este projeto utiliza um conjunto de ferramentas modernas para garantir a qualidade e a eficiência do desenvolvimento.
 
-## Learning Laravel
+- **Framework:** Laravel 12
+- **PHP:** Versão 8.3+
+- **Frontend:** Tailwind CSS, Alpine.js (via Blade UI Kit)
+- **Ícones:** Blade Heroicons
+- **Banco de Dados:** SQLite (padrão), com suporte para MySQL e PostgreSQL.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Ferramentas de Qualidade de Código
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Laravel Pint:** Para formatação e padronização automática do estilo de código PHP.
+- **Larastan (PHPStan):** Para análise estática de código, ajudando a encontrar bugs antes da execução.
+- **Rector:** Para refatoração e atualização automatizada do código para novas versões e melhores práticas.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Ambiente de Desenvolvimento
 
-## Laravel Sponsors
+- **Docker:** O projeto está preparado para ser executado em contêineres, garantindo consistência entre ambientes.
+- **Laravel Sail:** Uma interface de linha de comando para interagir com o ambiente de desenvolvimento Docker padrão do Laravel.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## ⚙️ Instalação e Configuração Local
 
-### Premium Partners
+Siga os passos abaixo para configurar o ambiente de desenvolvimento localmente.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Pré-requisitos
 
-## Contributing
+- PHP 8.3+
+- Composer
+- Node.js & NPM
+- Docker (se for usar o Sail)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Passos
 
-## Code of Conduct
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/seu-usuario/contend-tech-todo.git
+    cd contend-tech-todo
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2.  **Instale as dependências:**
+    ```bash
+    composer install
+    npm install
+    ```
 
-## Security Vulnerabilities
+3.  **Configure o ambiente:**
+    Copie o arquivo de exemplo `.env.example` para criar seu próprio arquivo de configuração `.env`.
+    ```bash
+    cp .env.example .env
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4.  **Gere a chave da aplicação:**
+    ```bash
+    php artisan key:generate
+    ```
 
-## License
+5.  **Configure o Banco de Dados:**
+    Abra o arquivo `.env` e configure suas credenciais de banco de dados. Por padrão, o projeto usa **SQLite**, que não requer configuração adicional.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    **Para SQLite (padrão):**
+    ```dotenv
+    DB_CONNECTION=sqlite
+    # O arquivo do banco de dados será criado automaticamente em database/database.sqlite
+    ```
+
+    **Para MySQL:**
+    ```dotenv
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=todo_app
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+
+6.  **Execute as Migrations:**
+    Este comando criará todas as tabelas necessárias no banco de dados.
+    ```bash
+    php artisan migrate
+    ```
+
+## ▶️ Executando a Aplicação
+
+1.  **Inicie os servidores:**
+    O projeto possui um script conveniente no `composer.json` para iniciar o servidor PHP e o Vite (para o frontend) simultaneamente.
+    ```bash
+    composer run dev
+    ```
+
+2.  **Acesse a aplicação:**
+    Abra seu navegador e acesse: http://127.0.0.1:8000
+
+## 🛠️ Comandos Úteis
+
+- **Executar Testes (Pest):**
+  ```bash
+  php artisan test
+  ```
+
+- **Verificar Estilo de Código (Pint):**
+  ```bash
+  ./vendor/bin/pint --test
+  ```
+
+- **Corrigir Estilo de Código (Pint):**
+  ```bash
+  ./vendor/bin/pint
+  ```
+
+- **Análise Estática (Larastan):**
+  ```bash
+  ./vendor/bin/phpstan analyse
+  ```
+
+- **Refatoração (Rector):**
+  Para simular as alterações (dry run):
+  ```bash
+  ./vendor/bin/rector process --dry-run
+  ```
+  Para aplicar as alterações:
+  ```bash
+  ./vendor/bin/rector process
+  ```
+
+## 🔑 Dados de Acesso
+
+1.  Para começar, acesse a página de registro: http://127.0.0.1:8000/register.
+2.  Crie uma nova conta de usuário.
+3.  Após o login, você será redirecionado para o painel de tarefas.
