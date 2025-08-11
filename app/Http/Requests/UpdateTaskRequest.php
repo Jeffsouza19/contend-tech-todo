@@ -16,7 +16,7 @@ class UpdateTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        $task        = Task::query()->first($this->route('task'));
+        $task        = Task::query()->find($this->route('task')->id);
         $taskService = app(TaskService::class);
 
         if (! $task) {
@@ -37,6 +37,16 @@ class UpdateTaskRequest extends FormRequest
             'title'       => 'required|string|max:255',
             'description' => 'required|string|sometimes',
             'status'      => 'required|in:pendente,concluída|sometimes',
+        ];
+    }
+
+    #[\Override]
+    public function messages(): array
+    {
+        return [
+            'title.required'       => 'O campo título é obrigatório.',
+            'description.required' => 'O campo descrição é obrigatório',
+            'status.required'      => 'O campo status é obrigatório',
         ];
     }
 }

@@ -153,3 +153,7 @@ Siga os passos abaixo para configurar o ambiente de desenvolvimento localmente.
 1.  Para começar, acesse a página de registro: http://127.0.0.1:8000/register.
 2.  Crie uma nova conta de usuário.
 3.  Após o login, você será redirecionado para o painel de tarefas.
+4.  Caso tenha rodado as migrations com os seeders, haverá um login com algumas tarefas previamente criadas.
+    ```
+    Login: teste@teste.com
+    Password: password
